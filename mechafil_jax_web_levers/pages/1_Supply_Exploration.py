@@ -41,6 +41,7 @@ def create_gamma_vector(upgrade_date, forecast_length, current_date, ramp_len_da
     ramp_end_idx = min(forecast_length, ramp_start_idx + ramp_len_days)
     gamma_smooth[ramp_start_idx:ramp_end_idx] = ramp_gamma[0:(ramp_end_idx-ramp_start_idx)]
     gamma_smooth[ramp_end_idx:] = 0.7
+    print(upgrade_date, current_date, forecast_length, ramp_len_days, update_day, ramp_start_idx, ramp_end_idx)
     return gamma_smooth
 
 @st.cache_data

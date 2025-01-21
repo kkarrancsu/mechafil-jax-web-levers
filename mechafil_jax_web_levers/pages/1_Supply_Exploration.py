@@ -39,9 +39,11 @@ def create_gamma_vector(upgrade_date, forecast_length, current_date, ramp_len_da
     
     ramp_start_idx = update_day
     ramp_end_idx = min(forecast_length, ramp_start_idx + ramp_len_days)
+    
+    print(upgrade_date, current_date, forecast_length, ramp_len_days, update_day, ramp_start_idx, ramp_end_idx)
+    
     gamma_smooth[ramp_start_idx:ramp_end_idx] = ramp_gamma[0:(ramp_end_idx-ramp_start_idx)]
     gamma_smooth[ramp_end_idx:] = 0.7
-    print(upgrade_date, current_date, forecast_length, ramp_len_days, update_day, ramp_start_idx, ramp_end_idx)
     return gamma_smooth
 
 @st.cache_data
@@ -360,7 +362,7 @@ def forecast_economy(start_date=None, current_date=None, end_date=None, forecast
     t3 = time.time()
     
     # create gamma vector for FIP0081
-    update_day = date(2024, 11, 30)
+    update_day = current_date + timedelta(days=30)
     no_fip0081 = np.ones(forecast_length_days)
     gamma_smooth_1y = create_gamma_vector(update_day, forecast_length_days, current_date, ramp_len_days=int(365))
 

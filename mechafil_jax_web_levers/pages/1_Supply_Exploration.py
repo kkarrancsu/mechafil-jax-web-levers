@@ -54,14 +54,15 @@ def get_offline_data(start_date, current_date, end_date):
     smoothed_last_historical_fpr = float(np.median(hist_fpr[-30:]))
 
     # get historical pledge/locked/circ-supply, as these have a discrepancy with MechaFIL.
-    dss = psb_sp.SpacescopeDataConnection(PUBLIC_AUTH_TOKEN)
-    sector_economics_df = dss.get_sector_economics_stats(start_date, current_date)
+    # dss = psb_sp.SpacescopeDataConnection(PUBLIC_AUTH_TOKEN)
+    # sector_economics_df = dss.get_sector_economics_stats(start_date, current_date)
 
     
     # hist_df = psb.get_historical_network_stats(start_date-timedelta(days=180), current_date, current_date)
     # print(hist_df)
 
-    return offline_data, smoothed_last_historical_rbp, smoothed_last_historical_rr, smoothed_last_historical_fpr, sector_economics_df
+    # return offline_data, smoothed_last_historical_rbp, smoothed_last_historical_rr, smoothed_last_historical_fpr, sector_economics_df
+    return offline_data, smoothed_last_historical_rbp, smoothed_last_historical_rr, smoothed_last_historical_fpr
 
 def plot_panel(scenario_results, baseline, start_date, current_date, end_date):
     # convert results dictionary into a dataframe so that we can use altair to make nice plots
@@ -348,9 +349,10 @@ def forecast_economy(start_date=None, current_date=None, end_date=None, forecast
     
     # get offline data
     t2 = time.time()
-    offline_data, _, _, _, sector_economics_df = get_offline_data(start_date, current_date, end_date)
+    #offline_data, _, _, _, sector_economics_df = get_offline_data(start_date, current_date, end_date)
+    offline_data, _, _, _ = get_offline_data(start_date, current_date, end_date)
     t3 = time.time()
-    print(sector_economics_df[['date', 'sector_initial_pledge_32gib']])
+    # print(sector_economics_df[['date', 'sector_initial_pledge_32gib']])
     
     # create gamma vector for FIP0081
     fip81_activation_date = date(2024, 11, 21)

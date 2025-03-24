@@ -460,7 +460,8 @@ def main():
         'forecast_length_days': forecast_length_days,
     }
 
-    _, smoothed_last_historical_rbp, smoothed_last_historical_rr, smoothed_last_historical_fpr, _ = get_offline_data(start_date, current_date, end_date)
+    # _, smoothed_last_historical_rbp, smoothed_last_historical_rr, smoothed_last_historical_fpr, _ = get_offline_data(start_date, current_date, end_date)
+    _, smoothed_last_historical_rbp, smoothed_last_historical_rr, smoothed_last_historical_fpr = get_offline_data(start_date, current_date, end_date)
     smoothed_last_historical_renewal_pct = int(smoothed_last_historical_rr * 100)
     smoothed_last_historical_fil_plus_pct = int(smoothed_last_historical_fpr * 100)
     

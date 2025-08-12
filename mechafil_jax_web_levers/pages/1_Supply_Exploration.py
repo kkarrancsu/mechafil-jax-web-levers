@@ -354,9 +354,9 @@ def forecast_economy(start_date=None, current_date=None, end_date=None, forecast
     t3 = time.time()
     # print(sector_economics_df[['date', 'sector_initial_pledge_32gib']])
     
-    # create gamma vector for FIP0081
-    fip81_activation_date = date(2024, 11, 21)
-    gamma_smooth_1y = create_gamma_trajectory(current_date, forecast_length_days, fip81_activation_date, ramp_len_days=365)
+    # # create gamma vector for FIP0081
+    # fip81_activation_date = date(2024, 11, 21)
+    # gamma_smooth_1y = create_gamma_trajectory(current_date, forecast_length_days, fip81_activation_date, ramp_len_days=365)
 
     # run simulation for the configured scenario, and for a pessimsitc and optimistic version of it
     use_as_configured = st.session_state['options'] == 'CS->AS'
@@ -365,13 +365,13 @@ def forecast_economy(start_date=None, current_date=None, end_date=None, forecast
         'status-quo': {
             'sector_duration_days': sector_duration_days, 
             'lock_target': 0.3, 
-            'gamma': gamma_smooth_1y, 
+            # 'gamma': gamma_smooth_1y, 
             'use_available_supply': False
         },
         'configured': {
             'sector_duration_days': sector_duration_days, 
             'lock_target': lock_target, 
-            'gamma': gamma_smooth_1y,
+            # 'gamma': gamma_smooth_1y,
             'use_available_supply': use_as_configured,
         },
     }
@@ -395,8 +395,8 @@ def forecast_economy(start_date=None, current_date=None, end_date=None, forecast
             forecast_length_days, 
             scenario_configs[scenario]['sector_duration_days'],
             offline_data,
-            gamma=scenario_configs[scenario]['gamma'],
-            gamma_weight_type=0,  # arithmetic weighting
+            # gamma=scenario_configs[scenario]['gamma'],
+            # gamma_weight_type=0,  # arithmetic weighting
             use_available_supply=scenario_configs[scenario]['use_available_supply'],
         ) 
 

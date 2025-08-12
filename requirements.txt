@@ -7,6 +7,6 @@ jaxlib==0.4.23
 numpy==1.26.4
 scipy
 matplotlib
-pystarboard @ git+https://github.com/protocol/pystarboard.git
-scenario-generator @ git+https://github.com/protocol/scenario-generator.git
-mechafil-jax @ git+https://github.com/celtd/mechafil-jax.git
+pystarboard @ git+https://github.com/celtd/pystarboard.git
+scenario-generator @ git+https://github.com/celtd/scenario-generator.git
+mechafil-jax @ git+https://github.com/celtd/mechafil-jax.git@7da81322d08d7d35b7a8595bf4c4728aaf3f01e7
